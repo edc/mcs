@@ -1,0 +1,67 @@
+HOW TO INSTALL
+
+	First run configure:
+
+		./configure
+	
+	If you want to build python module and/or R package, use one of:
+	
+		./configure --enable-R
+		./configure --enable-python
+		./configure --enable-R --enable-python
+	
+	Now you can build it:
+
+		make
+	
+	If you encounter 'swig error', you can use force to use the bundled the files:
+
+		touch python/src/py_wrap.c R/mcs/src/r_wrap.c
+
+	If you choose to make python module, cd the `python' folder and install
+	it:
+
+		cd python
+		python2.4 setup.py install
+	
+	If you choose to make a R package, cd the `R' folder and install it:
+
+		cd R
+		R CMD INSTALL mcs
+
+HOW TO USE
+
+	To use the C library, consult examples in folder `tests':
+		
+		- test.c: the most simple example
+		- tes-longresult.c: simple test that loads full match result
+		- sdf_mcs.cc: example that reads SDF instead of graph file
+		- test-timed.c: calculation with timeout control
+		- batch.c: batch processing
+	
+	To use the python module, consult file tests/calc_mcs.py.
+
+	To use the R package, follow the following instructions:
+
+		1) to parse SDF, use `graph.from.sdffile'. The only argument is
+		a URL to sdf or path to a local fle.
+
+			z <- graph.from.sdffile("http://bioweb.ucr.edu/ChemMineV2/compound/Aurora/6000/sdf")
+			zz <- graph.from.sdffile("mycompound.sdf")
+
+		2) to calculate mcs, invoke mcs
+
+			match <- mcs(z, zz)
+
+		the return value are the size, and the lists of matched atoms
+		in both compounds.
+		
+		If the calculation takes too long, you may set a timeout:
+
+			match <- mcs(z, zz, timeout=30)
+
+		The search will run at most 30 seconds in this case.
+
+		3) to get the matched substructure, use subsdf:
+
+			subsdf(z, match$sub1)

@@ -1,0 +1,10 @@
+Package: mcs
+Type: Package
+Title: Maximum Common Subgraph/Substrcture
+Version: 0.0.3
+Date: 2008-09-18
+Author: Y. Eddie Cao
+Maintainer: Y. Eddie Cao<ycao@bioinfo.ucr.edu>
+Description: MCS
+Depends: methods
+License: GPL (>=2)

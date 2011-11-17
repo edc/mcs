@@ -1,0 +1,4 @@
+useDynLib(mcs)
+export("subsdf", "graph.from.sdffile", "mcs")
+exportClasses("Graph", "SDFGraph")
+expoertMethods("initialize")
