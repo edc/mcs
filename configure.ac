@@ -31,11 +31,11 @@ fi
 
 if test "x$pass" == "xno"
 then
-	AC_MSG_ERROR([cannot find header file gc.h. Consider setting --with-libgc-include=PATH_TO_LIBGC_LIB_DIR])
+	AC_MSG_ERROR([cannot find header file gc.h. Consider setting --with-libgc-include=PATH_TO_LIBGC_INCLUDE_DIR])
 else 
 	if test "x$pass" == "xno-reset"
 	then
-		AC_MSG_ERROR([cannot find header file gc.h. Consider resetting --with-libgc-include=PATH_TO_LIBGC_LIB_DIR])
+		AC_MSG_ERROR([cannot find header file gc.h. Consider resetting --with-libgc-include=PATH_TO_LIBGC_INCLUDE_DIR])
 	fi
 fi
 

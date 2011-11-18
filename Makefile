@@ -1,6 +1,6 @@
 OBJ = vmaxs.o utils.o list.o bipartite.o
-LIB = libmcs.a
-EXTRACFLAGS = -O3  -std=c99 -fPIC  -Wall -Wextra -Werror -Wshadow -Wwrite-strings -pedantic
+LIB = libmcs.a libmcs.so
+EXTRACFLAGS = -O3  -std=c99 -fPIC 
 EXTRACXXFLAGS = -O3 
 AR = ar
 CC = gcc
@@ -18,7 +18,9 @@ all : ${LIB}
 
 libmcs.a : ${OBJ}
 	ar cr $@ $^
-	#rm $^
+
+libmcs.so : ${OBJ}
+	$(CC) $(CFLAGS) $(EXTRACFLAGS) -shared -o $@ $^ -lgc
 
 clean : 
 	rm -f ${OBJ}

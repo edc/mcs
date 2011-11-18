@@ -1,5 +1,5 @@
 OBJ = vmaxs.o utils.o list.o bipartite.o
-LIB = libmcs.a
+LIB = libmcs.a libmcs.so
 EXTRACFLAGS = -O3  -std=c99 -fPIC @CONF_CFLAGS@
 EXTRACXXFLAGS = -O3 
 AR = ar
@@ -18,7 +18,9 @@ all : ${LIB} @WITHR@ @WITHPYTHON@
 
 libmcs.a : ${OBJ}
 	ar cr $@ $^
-	rm $^
+
+libmcs.so : ${OBJ}
+	$(CC) $(CFLAGS) $(EXTRACFLAGS) -shared -o $@ $^ -lgc
 
 clean : 
 	rm -f ${OBJ}
